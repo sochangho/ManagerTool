@@ -35,7 +35,8 @@ public class ManagerToolWindow : EditorWindow
         itemButtonPresenter.GUIManagementRender();
         GUILayout.EndArea();
 
-
+        
+        
 
 
     }

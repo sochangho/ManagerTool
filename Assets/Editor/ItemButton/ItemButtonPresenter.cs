@@ -5,9 +5,10 @@ using UnityEditor;
 public class ItemButtonPresenter
 {
     
-    private List<KeyValuePair<ItemButtonModel, System.Action>> itemButtonModels = new List<KeyValuePair<ItemButtonModel, System.Action>>();
+    private List<KeyValuePair<ItemButtonModel, ManagementView>> itemButtonModels 
+        = new List<KeyValuePair<ItemButtonModel, ManagementView>>();
 
-    private ManagementView managementView = new ManagementView();
+    
 
     public void Init()
     {
@@ -17,13 +18,19 @@ public class ItemButtonPresenter
         ItemButtonModel item_notice = new ItemButtonModel("공지 관리", false);
         ItemButtonModel item_chatting = new ItemButtonModel("채팅 공지", false);
 
-        itemButtonModels.Add(new KeyValuePair<ItemButtonModel,System.Action >(item_account,managementView.AccountManagementShow));
+        ManagementView account_view = new AccountInquiryView();
+        ManagementView itempayment_view = new ItemPaymentView();
+        ManagementView chattingManagement_view = new ItemPaymentView();
+        ManagementView notice_view = new NoticeView();
 
-        itemButtonModels.Add(new KeyValuePair<ItemButtonModel, System.Action>(item_im, managementView.ItemManagementShow));
 
-        itemButtonModels.Add(new KeyValuePair<ItemButtonModel, System.Action>(item_notice, managementView.NoticeManagementShow));
+        itemButtonModels.Add(new KeyValuePair<ItemButtonModel, ManagementView>(item_account, account_view));
 
-        itemButtonModels.Add(new KeyValuePair<ItemButtonModel, System.Action>(item_chatting, managementView.ChattingManagementShow));
+        itemButtonModels.Add(new KeyValuePair<ItemButtonModel, ManagementView>(item_im, itempayment_view));
+
+        itemButtonModels.Add(new KeyValuePair<ItemButtonModel, ManagementView>(item_notice, chattingManagement_view));
+
+        itemButtonModels.Add(new KeyValuePair<ItemButtonModel, ManagementView>(item_chatting, notice_view));
     }
 
 
@@ -36,7 +43,7 @@ public class ItemButtonPresenter
         GUILayout.BeginVertical();
         
         GUILayout.Space(30);
-        foreach(KeyValuePair<ItemButtonModel, System.Action> item in itemButtonModels)
+        foreach(var item in itemButtonModels)
         {
             GUILayoutOption[] options = new GUILayoutOption[]
             {
@@ -62,11 +69,11 @@ public class ItemButtonPresenter
     public void GUIManagementRender()
     {
 
-        foreach (KeyValuePair<ItemButtonModel, System.Action> item in itemButtonModels)
+        foreach (var item in itemButtonModels)
         {
             if (item.Key.button_isCheck)
             {
-                item.Value.Invoke();
+                item.Value.ShowGUI();
             }
         }
 
@@ -77,7 +84,7 @@ public class ItemButtonPresenter
     private void GUIItemButtonClick(ItemButtonModel itemButtonModel)
     {
         
-        foreach (KeyValuePair<ItemButtonModel, System.Action> item in itemButtonModels)
+        foreach (var item in itemButtonModels)
         {
             item.Key.button_isCheck = false;
 
