@@ -31,9 +31,10 @@ public class ManagerToolWindow : EditorWindow
         itemButtonPresenter.GUIButtonRender();
         GUILayout.EndArea();
 
-        GUILayout.BeginArea(new Rect(120, 30, 600, 700));
+
+       GUILayout.BeginArea(new Rect(120, 30, 600, 800));
         itemButtonPresenter.GUIManagementRender();
-        GUILayout.EndArea();
+       GUILayout.EndArea();
 
         
         

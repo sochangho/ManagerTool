@@ -13,10 +13,18 @@ public class AccountInquiryView : ManagementView
     GUILayoutOption[] options_button;
     GUILayoutOption[] options_textfield;
     GUILayoutOption[] options_accountText;
+    GUILayoutOption[] options_buttonExl;
 
     private AccountPlayerModel accountPlayerModel;
-    private TreeView treeView;
-    private ItemTreeView itemTreeView;
+ 
+    
+
+    private ItemTreeView ItemTreeView;
+
+
+    public System.Action<object> action_account;
+    public System.Action<object> action_exlExport;
+
 
     public AccountInquiryView()
     {
@@ -39,10 +47,23 @@ public class AccountInquiryView : ManagementView
             GUILayout.Width(100)
         };
 
+        options_buttonExl = new GUILayoutOption[]
+        {
+            GUILayout.Width(70),
+            GUILayout.Height(30)
 
+        };
+
+
+        action_account = (obj) => { Debug.Log("°èÁ¤ Á¶È¸"); };
+        action_exlExport = (obj) => { Debug.Log("¿¢¼¿ Ãâ·Â"); };
 
         accountPlayerModel = new AccountPlayerModel();
-        itemTreeView = new ItemTreeView();
+
+
+        ItemTreeView = new ItemTreeView();
+
+
     }
 
 
@@ -63,7 +84,7 @@ public class AccountInquiryView : ManagementView
 
         if (GUILayout.Button("Á¶È¸" , options_button))
         {
-
+            action_account?.Invoke(null);
         }
 
         GUILayout.EndHorizontal();
@@ -79,12 +100,23 @@ public class AccountInquiryView : ManagementView
         AccountShow("Nicname : ", accountPlayerModel.nic_name);
         AccountShow("State : ", accountPlayerModel.state);
         AccountShow("LastPlayDate : ", accountPlayerModel.lastplayDate);
-
+        GUILayout.Space(20);
         //-----------------------------------------------------------
 
 
-        itemTreeView.TreeViewShow();
+        GUILayout.BeginHorizontal();
+        GUILayout.Space(520);
+        if (GUILayout.Button("¿¢¼¿", options_buttonExl))
+        {
+            action_exlExport?.Invoke(null);
+        }
+        GUILayout.EndHorizontal();
 
+        GUILayout.Space(10);
+        GUILayout.BeginHorizontal();
+        GUILayout.Space(50);
+        ItemTreeView.TreeViewShow();
+        GUILayout.EndHorizontal();
 
 
     }
