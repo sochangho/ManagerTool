@@ -28,21 +28,5 @@ public class ItemModel : Model
         this.create_date = create_date;
     }
 
-    public override Model ModelGet()
-    {
-        return this;
-    }
 
-    public override object DataGet()
-    {
-        string[] strings = new string[]
-        {
-            number.ToString(),
-            type.ToString(),
-            name_item.ToString(),
-            amount.ToString(),
-            create_date.ToString(),
-        };
-        return strings;
-    }
 }

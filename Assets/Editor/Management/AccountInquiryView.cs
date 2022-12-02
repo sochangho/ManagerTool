@@ -16,10 +16,10 @@ public class AccountInquiryView : ManagementView
     GUILayoutOption[] options_buttonExl;
 
     private AccountPlayerModel accountPlayerModel;
- 
-    
 
-    private ItemTreeView ItemTreeView;
+
+
+    private AccountInquiryTreeView accountInquiryTreeView;
 
 
     public System.Action<object> action_account;
@@ -61,7 +61,7 @@ public class AccountInquiryView : ManagementView
         accountPlayerModel = new AccountPlayerModel();
 
 
-        ItemTreeView = new ItemTreeView();
+        accountInquiryTreeView = new AccountInquiryTreeView();
 
 
     }
@@ -115,7 +115,7 @@ public class AccountInquiryView : ManagementView
         GUILayout.Space(10);
         GUILayout.BeginHorizontal();
         GUILayout.Space(50);
-        ItemTreeView.TreeViewShow();
+        accountInquiryTreeView.TreeViewShow();
         GUILayout.EndHorizontal();
 
 

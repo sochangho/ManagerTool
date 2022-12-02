@@ -20,7 +20,7 @@ public class ItemButtonPresenter
 
         ManagementView account_view = new AccountInquiryView();
         ManagementView itempayment_view = new ItemPaymentView();
-        ManagementView chattingManagement_view = new ItemPaymentView();
+        ManagementView chattingManagement_view = new ChattingManagementVew();
         ManagementView notice_view = new NoticeView();
 
 
